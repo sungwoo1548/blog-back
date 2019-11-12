@@ -5,12 +5,20 @@
   "repository": "https://github.com/sungwoo1548/blog-back.git",
   "author": "sungwoo1548 <swo1548@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
     "@hapi/joi": "^16.1.7",
     "bcrypt": "^3.0.6",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.10"
+    "mongoose": "^5.7.10",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
