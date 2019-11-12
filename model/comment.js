@@ -9,7 +9,7 @@ const commentSchema = new Schema({
     contents: String,
 });
 
-const Comment = model("Post", commentSchema);
+const Comment = model("Comment", commentSchema);
 
 function validateComment(comment) {
     const schema = Joi.object({

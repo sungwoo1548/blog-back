@@ -7,7 +7,7 @@ const tagSchema = new Schema({
     posts: [{ type: mongoose.Types.ObjectId, ref: "Post" }]
 });
 
-const Tag = model("Post", tagSchema);
+const Tag = model("Tag", tagSchema);
 
 function validateTag(tag) {
     const schema = Joi.object({
