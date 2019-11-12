@@ -6,6 +6,12 @@
   "author": "sungwoo1548 <swo1548@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "@hapi/joi": "^16.1.7",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.10",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
   }
 }
