@@ -6,7 +6,14 @@ const auth = require("../common/auth")();
 const { Post, validatePost } = require("../model/post");
 const { Tag } = require("../model/tag");
 
-router.post("/", auth.authentication(), async (req, res, next) => {
+const wrapper = require("../common/wrapper");
+
+router.post("/", auth.authentication(), wrapper(async (req, res, next) => {
+    if (!req.user.admin) {
+        res.json({ error: "unauthorized" });
+        next();
+        return;
+    }
     const { title, contents, tags } = req.body;
     // const { id, name, email } = req.user;
 
@@ -30,6 +37,6 @@ router.post("/", auth.authentication(), async (req, res, next) => {
     }
     res.json({ result: true });
     next();
-});
+}));
 
 module.exports = router;
