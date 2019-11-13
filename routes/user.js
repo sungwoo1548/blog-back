@@ -42,4 +42,15 @@ router.post("/login", async (req, res, next) => {
     }
 });
 
+router.get("/email", async (req, res, next) => {
+    const email = req.query.email;
+    const DB_user = await User.findOne({ email });
+    if (DB_user) {
+        res.json({ result: false });
+    } else {
+        res.json({ result: true });
+    }
+    next();
+})
+
 module.exports = router;
