@@ -33,7 +33,7 @@ router.post("/login", async (req, res, next) => {
         const token = jwt.sign(
             { id: DB_user._id, name: DB_user.name, email: DB_user.email, admin: DB_user.admin },
             jwtSecret,
-            { expiresIn: "1m" }
+            { expiresIn: "20m" }
         );
         res.json({ result: true, token, admin: DB_user.admin });
     } else {
@@ -41,5 +41,16 @@ router.post("/login", async (req, res, next) => {
         next();
     }
 });
+
+router.get("/email", async (req, res, next) => {
+    const email = req.query.email;
+    const DB_user = await User.findOne({ email });
+    if (DB_user) {
+        res.json({ result: false });
+    } else {
+        res.json({ result: true });
+    }
+    next();
+})
 
 module.exports = router;
