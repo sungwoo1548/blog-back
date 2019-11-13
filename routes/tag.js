@@ -3,13 +3,15 @@ const router = express.Router();
 
 const { Tag, validateTag } = require("../model/tag");
 
-router.get("/", async (req, res, next) => {
+const wrapper = require("../common/wrapper");
+
+router.get("/", wrapper(async (req, res, next) => {
     const tags = await Tag.find();
     res.json({ tags });
     next();
-});
+}));
 
-router.post("/", async (req, res, next) => {
+router.post("/", wrapper(async (req, res, next) => {
     const name = req.body.name;
     if (validateTag(req.body).error) {
         res.json({ error: "양식에 맞지않음" });
@@ -24,9 +26,9 @@ router.post("/", async (req, res, next) => {
         res.json({ tag });
         next();
     }
-});
+}));
 
-router.get("/:name", async (req, res, next) => {
+router.get("/:name", wrapper(async (req, res, next) => {
     const name = req.params.name;
     const tag = await Tag.findOne({ name });
 
@@ -36,6 +38,6 @@ router.get("/:name", async (req, res, next) => {
         res.json({ error: "태그가 없습니다." })
     }
     next();
-});
+}));
 
 module.exports = router;
