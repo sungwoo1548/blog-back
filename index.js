@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Helmet = require("helmet");
 
 const app = express();
+const cors = require("cors");
 
 const post = require("./routes/post");
 const user = require("./routes/user");
@@ -11,6 +12,8 @@ const comment = require("./routes/comment");
 
 
 const dbURI = process.env.MONGODB_URI || "mongodb://localhost/blog-dev";
+app.use(Helmet());
+app.use(cors());
 
 app.use((req, res, next) => {
     mongoose.connect(dbURI, {
@@ -23,7 +26,6 @@ app.use((req, res, next) => {
         .catch(e => next(e));
 });
 
-app.use(Helmet());
 app.use(express.json());
 
 app.use("/auth", user);
