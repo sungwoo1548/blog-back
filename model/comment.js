@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 const Joi = require("@hapi/joi");
 
 const commentSchema = new Schema({
-    post_id = { type: mongoose.Types.ObjectId, ref: "Post" },
+    post_id : { type: mongoose.Types.ObjectId, ref: "Post" },
     author: { type: mongoose.Types.ObjectId, ref: "User" },
     date: { type: Date, default: Date.now },
     contents: String,
