@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const Helmet = require("helmet");
 
 const app = express();
+const cors = require("cors");
 
 const post = require("./routes/post");
 const user = require("./routes/user");
 const tag = require("./routes/tag");
 const comment = require("./routes/comment");
 
-const config = require("./common/jwt_config");
-const auth = require("./common/auth")();
 
-const dbURI = process.env.MONGODB_URI || "mongodb://localhost/blog-dev";
+const dbURI = process.env.MONGODB_URI || "mongodb://70.12.225.114:27017/blog-dev";
 app.use(Helmet());
+app.use(cors());
 
 app.use((req, res, next) => {
     mongoose.connect(dbURI, {
@@ -25,9 +25,6 @@ app.use((req, res, next) => {
         .then(() => next())
         .catch(e => next(e));
 });
-
-
-app.use(auth.initialize());
 
 app.use(express.json());
 
