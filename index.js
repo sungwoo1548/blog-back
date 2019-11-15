@@ -11,7 +11,7 @@ const tag = require("./routes/tag");
 const comment = require("./routes/comment");
 
 
-const dbURI = process.env.MONGODB_URI || "mongodb://70.12.225.114:27017/blog-dev";
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost/blog-dev";
 app.use(Helmet());
 app.use(cors());
 
