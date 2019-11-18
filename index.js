@@ -13,7 +13,18 @@ const comment = require("./routes/comment");
 
 const dbURI = process.env.MONGODB_URI || "mongodb://localhost/blog-dev";
 app.use(Helmet());
-app.use(cors());
+
+var whitelist = ['http://localhost.com', 'https://ksw-blog-front.web.app', 'https://ksw-blog-front.firebaseapp.com']
+var corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     mongoose.connect(dbURI, {
